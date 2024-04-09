@@ -1,0 +1,9 @@
+certifi==2023.11.17
+Django==5.0.1
+django-crispy-forms==2.1
+crispy-bootstrap4==2023.1
+idna==3.6
+pillow==9.5.0
+pytz==2024.1
+requests==2.31.0
+urllib3==2.1.0
