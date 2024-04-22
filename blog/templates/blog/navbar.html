@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Turkian Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
@@ -17,7 +17,7 @@
                     <!-- <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a> -->
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit">logout</button>
+                        <button type="submit">Logout</button>
                     </form>
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
