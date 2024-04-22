@@ -4,13 +4,19 @@ Desarrollado por Agustín Arnaiz,
 basado en el curso de Corey Schafer "Python Django Tutorial: Full-Featured Web App".
 
 Para usar:
-descargar repositorio, crear entorno virtual, activarlo, e instalar "requirements.txt"
+descargar repositorio, crear entorno virtual:
 
 > python -m venv env
+
+activarlo ENV:
+
 > env\Scripts\activate.bat
+
+instalar "requirements.txt"
+
 > pip install -r requirements.txt
 
-Correr servidor Django, ejecutar en consola:
+Correr servidor Django:
 
 > python manage.py runserver
 
