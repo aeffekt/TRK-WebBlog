@@ -20,7 +20,7 @@ def blog(request):
 
 class PostListView(ListView):   # 'class base view' para lista de elementos de Django
     model = Post
-    template_name = 'blog/blog.html'# nombre por defecto del template= <app>/<model>_<viewtype>.html
+    template_name = 'blog/blog_list.html'# nombre por defecto del template= <app>/<model>_<viewtype>.html
     context_object_name = 'posts' # nombre por defecto de obajetos= <object_list>
     ordering = ['-date_posted'] # el - invierte el ordenamiento de la fecha
     paginate_by = 5
