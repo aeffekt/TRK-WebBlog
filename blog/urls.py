@@ -8,7 +8,6 @@ from .views import (PostListView,
                     )
 from . import views
 
-
 urlpatterns = [
     path('', views.home, name="blog-home"),
     path('home/', views.home, name="blog-home"),

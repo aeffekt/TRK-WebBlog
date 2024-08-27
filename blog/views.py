@@ -10,7 +10,7 @@ from .models import Post
 
 
 def home(request):    
-    return render(request, 'blog/index.html')
+    return render(request, 'blog/blog_list.html')
 
 def blog(request):
     context = {

@@ -1,0 +1,40 @@
+{% extends 'blog/layout.html' %}
+{% block content %}
+<article class="media content-section">
+    <div id="search-add-wrapper">
+        <form method="GET" style="display: flex;">
+            <input type='text' name='search-area' placeholder="Buscar tarea..." value="{{search_input}}">
+            <input class="button" type="submit" value='Buscar'>
+        </form>
+        {% if items|length > 0 %}
+        <a id="add-link" href="{% url 'item-create' %}" title="Crear tarea nueva">&#x2b;</a>
+        {% endif %}
+    </div>
+
+    <div id="itemlist" class="item-items-wrapper">
+        {% for item in items %}
+        <div class="item-wrapper" data-position="{{item.pk}}">
+            <div class="item-title">
+                {% if item.done_status %}
+                <div class="item-complete-icon"></div>
+                <i><s><a href="{% url 'item-update' item.id %}">{{item}}</a></s></i>
+                {% else %}
+                <div class="item-incomplete-icon"></div>
+                <a href="{% url 'item-update' item.id %}">{{item}}</a>
+                {% endif %}
+            </div>
+            <div class="item-controls">
+                <a class="delete-link" title="Eliminar tarea" href="{% url 'item-delete' item.id %}">&#215;</a>
+            </div>
+        </div>
+        {% empty %}
+        <div style="text-align: center; padding-bottom: 10px; line-height: 1em;">
+            <h3>No hay nuevos items.</h3>
+            <h3>Crear <a style="text-decoration: none; color: #e53935;" href="{% url 'item-create' %}">nuevo Item</a> !
+            </h3>
+        </div>
+        {% endfor %}
+    </div>
+</article>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'blog/layout.html' %}
+{% block content %}
+<article class="media content-section">
+    <a href="{% url 'todo' %}">&#8592; Atrás</a>
+    <div class="card-body">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button" type="submit" value="Aceptar">
+        </form>
+    </div>
+</article>
+{% endblock %}
