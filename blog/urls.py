@@ -8,12 +8,10 @@ from .views import (PostListView,
                     )
 from . import views
 
-urlpatterns = [
-    path('', views.home, name="blog-home"),
-    path('home/', views.home, name="blog-home"),
-    path('index/', views.home, name="blog-home"),
-    path('about/', views.about, name="blog-about"),
-    path('blog/', PostListView.as_view(), name="blog"),
+urlpatterns = [    
+    path('', PostListView.as_view(), name="blog"),
+    path('about/', views.about, name="about"),    
+    path('search_blog/', views.search_blog, name="search_blog"),
     path('user/<str:username>', UserPostListView.as_view(), name="user-posts"),
     path('post/<int:pk>/', PostDetailView.as_view(), name="post-detail"),
     path('post/new/', PostCreateView.as_view(), name="post-create"),

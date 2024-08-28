@@ -7,16 +7,25 @@ from django.views.generic import (ListView,
                                   UpdateView,
                                   DeleteView)
 from .models import Post
+from django.db.models import Q
 
 
-def home(request):    
-    return render(request, 'blog/blog_list.html')
+def search_blog(request):
+    query = request.GET.get('search_input')  # Tomamos el valor ingresado en el input con name="q"    
+    if query:
+        # Realizamos una búsqueda en el título o contenido de los posts
+        search_results = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )
+    else:
+        search_results = Post.objects.none()  # Si no hay búsqueda, no devolvemos resultados
 
-def blog(request):
     context = {
-        'posts': Post.objects.all()
+        'posts': search_results,
+        'query': query,
     }
-    return render(request, 'blog/blog.html', context)
+    return render(request, 'blog/blog_list.html', context)
+
 
 class PostListView(ListView):   # 'class base view' para lista de elementos de Django
     model = Post

@@ -1,10 +1,7 @@
-{% extends "blog/layout.html" %}
+{% extends 'blog/layout.html' %}
 {% block content %}
-    {% if query %}
-        <h3> Search results for: {{query}} </h3>
-    {% endif %}
-
-    {% for post in posts %}
+    <h1>Resultados para la búsqueda: {{ query }}</h1>
+    {% for post in search_results %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
