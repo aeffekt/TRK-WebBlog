@@ -15,7 +15,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev')
 
 
-ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
+ENVIRONMENT = os.getenv('DJANGO_ENV', 'production')
 
 if ENVIRONMENT == 'production':
     DEBUG = False
