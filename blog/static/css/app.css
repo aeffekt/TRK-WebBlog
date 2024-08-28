@@ -28,7 +28,7 @@ ul {
 }
 
 .site-header .navbar-nav .nav-link, button {
-  color: #9e431f;
+  color: #c7c4c3;
 }
 
 .content-section .search-nav{
@@ -109,4 +109,5 @@ a.article-title:hover {
   color: #8fb1cf;
   padding: 0px;
   text-align: center;
+  font-size: 12px;
 }
