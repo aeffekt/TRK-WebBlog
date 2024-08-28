@@ -19,7 +19,7 @@ ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
 
 if ENVIRONMENT == 'production':
     DEBUG = False
-    ALLOWED_HOSTS = ['tu-dominio.com', 'localhost']
+    ALLOWED_HOSTS = ['turkian.pythonanywhere.com']
 else:
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
