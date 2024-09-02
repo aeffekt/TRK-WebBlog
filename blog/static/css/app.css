@@ -21,6 +21,10 @@ ul {
   margin: 0;
 }
 
+footer a {
+  color: var(--title-color);
+  text-decoration: none;
+}
 
 .navbar {
   background-color: #003860;
