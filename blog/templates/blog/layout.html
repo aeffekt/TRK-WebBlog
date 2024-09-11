@@ -14,6 +14,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/todo.css' %}">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   {% if title %}
   <title> {{ title }}</title>
   {% else %}
@@ -40,12 +42,11 @@
       </div>
       <div class="col-md-3">
         <div class="sticky-top">
-          <div class="content-section search-nav">
-            <h3>Search in Blog</h3>
+          <div class="content-section search-nav">            
             <div class="input-group rounded" >            
               <span class="input-group-text border-2" id="search-addon">
                 <form action="{% url 'search_blog' %}" method="get" style="width: 100%;">
-                  <input name="search_input" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                  <input name="search_input" type="search" class="form-control rounded" placeholder="Search in blog..." aria-label="Search"
                           aria-describedby="search-addon" />
                   <button class="btn btn-info" style="margin-top: 10px;">Search</button>
                 </form>

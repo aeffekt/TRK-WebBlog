@@ -9,6 +9,9 @@ from django.views.generic import (ListView,
 from .models import Post
 from django.db.models import Q
 
+import sqlite3
+
+
 
 def search_blog(request):
     query = request.GET.get('search_input')  # Tomamos el valor ingresado en el input con name="q"    
@@ -27,7 +30,7 @@ def search_blog(request):
     return render(request, 'blog/blog_list.html', context)
 
 
-class PostListView(ListView):   # 'class base view' para lista de elementos de Django
+class PostListView(ListView):   # 'class base view' para lista de elementos de Django    
     model = Post
     template_name = 'blog/blog_list.html'# nombre por defecto del template= <app>/<model>_<viewtype>.html
     context_object_name = 'posts' # nombre por defecto de obajetos= <object_list>

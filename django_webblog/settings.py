@@ -5,40 +5,45 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-
 load_dotenv()
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev')
-
-
 ENVIRONMENT = os.getenv('DJANGO_ENV', 'production')
 
+
 if ENVIRONMENT == 'production':
+    SITE_ID = 3
     DEBUG = False
-    ALLOWED_HOSTS = ['turkian.pythonanywhere.com']
+    ALLOWED_HOSTS = ['turkian.pythonanywhere.com']    
+    
 else:
+    SITE_ID = 2
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'blog.apps.BlogConfig', # agregar cada app a esta lista, el nombre se encuentra en apps.py de la carpeta de la APP
+    'blog.apps.BlogConfig',
     'todo.apps.TodoConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'crispy_bootstrap4',
+    'crispy_bootstrap5',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',    
+    'allauth.socialaccount',
+    'allauth.mfa',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'django_webblog.urls'
@@ -63,11 +69,30 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages',                
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [        
+        'django.contrib.auth.backends.ModelBackend',        
+        'allauth.account.auth_backends.AuthenticationBackend',        
+    ]
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
 
 WSGI_APPLICATION = 'django_webblog.wsgi.application'
 
@@ -86,31 +111,16 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+AUTH_PASSWORD_VALIDATORS = [   
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'es-ar'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -127,13 +137,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_REDIRECT_URL = 'blog'
 LOGIN_URL = 'login'
 
+# ALLAUTH para habilitar loguearse con nombre o email en el mismo campo
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+
+ACCOUNT_LOGOUT_ON_GET = True
+
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+SOCIALACCOUNT_AUTO_SIGNUP = False
+
+# Configuración para allauth
+ACCOUNT_ADAPTER = 'users.adapters.MyAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'users.adapters.MySocialAccountAdapter'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('MAIL_USERNAME')
