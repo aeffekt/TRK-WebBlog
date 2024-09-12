@@ -13,12 +13,13 @@ ENVIRONMENT = os.getenv('DJANGO_ENV', 'production')
 if ENVIRONMENT == 'production':
     SITE_ID = 3
     DEBUG = False
-    ALLOWED_HOSTS = ['turkian.pythonanywhere.com']    
-    
+    ALLOWED_HOSTS = ['turkian.pythonanywhere.com']
+    DB_PATH = os.path.abspath(os.path.join(BASE_DIR, '../db/db.sqlite3'))
 else:
     SITE_ID = 2
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    DB_PATH = os.path.abspath(os.path.join(BASE_DIR, 'db.sqlite3'))
     
 
 
@@ -103,7 +104,7 @@ WSGI_APPLICATION = 'django_webblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DB_PATH,
     }
 }
 
