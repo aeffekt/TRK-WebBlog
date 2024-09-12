@@ -10,7 +10,14 @@
 body {  
   background: var(--background-color);
   color: var(--text-color);
-  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1; /* Hace que el contenido principal crezca */
+  padding-top: 5rem; /* Espacio equivalente al navbar */
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -28,6 +35,12 @@ footer a {
 
 .navbar {
   background-color: #003860;
+  height: 4em;
+}
+
+.navbar .navbar-nav{  
+  display: flex;
+  align-items: center;
 }
 
 .navbar button {
@@ -38,6 +51,23 @@ footer a {
   background: none;
   cursor: pointer;
   color: white;
+}
+
+.nav-account-img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.navbar-nav form button {    
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky-top {
+  top: 5rem;
 }
 
 .site-header .navbar-nav .nav-link, button {
@@ -78,12 +108,13 @@ a.article-title:hover {
   height: 65px;
   width: 65px;
   margin-right: 16px;
+  object-fit: cover;
 }
 
-.article-metadata {
+.article-metadata, hr{
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: 1px solid #949494
 }
 
 .article-metadata a:hover {
@@ -109,11 +140,11 @@ a.article-title:hover {
 }
 
 .footer {
-  position: fixed;  
-  bottom: 0;
+  
   width: 100%;
   background-color:#131313;
   color: var(--title-color);
   text-align: center;
   font-size: 11px;
+  margin-top: auto;
 }

@@ -1,5 +1,5 @@
 certifi==2023.11.17
-Django==5.1.1
+Django==4.2.16
 Django-allauth[socialaccount, mfa]==64.2.1
 django-crispy-forms==2.1
 crispy-bootstrap5==2024.2
