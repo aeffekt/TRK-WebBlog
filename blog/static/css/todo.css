@@ -7,11 +7,12 @@
     border-radius: 5px;
     overflow: hidden;
     margin: 5px;
+    margin-left: 20px;
 }
 
 .item-title {
     display: flex;
-    padding: 20px;
+    padding: 10px;
 }
 
 .item-title a {
@@ -51,12 +52,6 @@
     text-shadow: 1px 1px #81413b;
 }
 
-#search-add-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-}
 
 @media screen and (max-width:320px) {
     #search-add-wrapper {
@@ -64,28 +59,13 @@
     }
 }
 
-input[type=text],
-input[type=password],
-textarea {
+input[type=text], input[type=password], textarea {
     border: 1px solid #757575;
     border-radius: 5px;
-    padding: 10px;
-    width: 90%;
+    padding: 10px;    
 }
-
 
 ::placeholder {
     font-weight: 300;
     opacity: 0.7;
-}
-
-.button {
-    border: 1px solid #757575;
-    background-color: #FFF;
-    color: #EB796F;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
 }

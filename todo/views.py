@@ -24,8 +24,8 @@ class ItemListView(LoginRequiredMixin, ListView):
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
-    model = Item    
-    fields = {'title', 'description', 'done_status'}
+    model = Item
+    fields = ['title', 'description', 'done_status']    
     success_url = reverse_lazy('todo')
 
     def form_valid(self, form):

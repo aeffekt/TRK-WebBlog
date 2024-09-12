@@ -1,13 +1,17 @@
 {% extends 'blog/layout.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
-<article class="media content-section">
-    <a href="{% url 'todo' %}">&#8592; Atrás</a>
-    <div class="card-body">
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input class="button" type="submit" value="Aceptar">
-        </form>
-    </div>
-</article>
+    <article class="media content-section">
+        <a href="{% url 'todo' %}">&#8592; Back</a>
+        <div class="card-body">
+            <h5>Create/Edit Item</h5>
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="btn btn-primary" type="submit" value="Accept">
+            </form>
+        </div>
+    </article>
 {% endblock %}

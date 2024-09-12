@@ -1,38 +1,38 @@
 {% extends "account/base_entrance.html" %}
+
 {% load allauth i18n %}
+
+{% load crispy_forms_tags %}
+
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
+
 {% block content %}
-<div class="content-section">
-    {% element h2 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{% url 'login' %}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
-            {% endslot %}
+    <div class="content-section">
+        {% element h2 %}
+            {% trans "Sign Up" %}
         {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
-</div>    
+        {% setvar link %}
+            <a href="{% url 'login' %}">
+            {% endsetvar %}
+            {% setvar end_link %}
+            </a>
+        {% endsetvar %}
+        {% element p %}
+            {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+        {% endelement %}
+        {% if not SOCIALACCOUNT_ONLY %}
+            {% url 'signup' as action_url %}
+            <form method="post" action="{{ action_url }}">
+                {% csrf_token %}                
+                {{ form|crispy }}  <!-- Aplica crispy a todo el formulario -->
+                {{ redirect_field }}
+                <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
+            </form>
+        {% endif %}
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+    </div>    
 {% endblock content %}
