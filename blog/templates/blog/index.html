@@ -1,13 +1,13 @@
 {% extends "blog/layout.html" %}
 {% block content %}
-<article class="media content-section">
-    <div class="media-body">
-        <div class="article-metadata">
-            <h1> Bienvenido a Turkian Blog</h1>
-            <h5 class="text-muted">Puedes crear un usuario desde aquí: <a href="{% url 'register' %}">Registrarse</a>
-            </h5>
-            <h5 class="text-muted">O visitar el blog con todos los posteos: <a href="{% url 'blog' %}">Blog</a></h5>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <h1> Bienvenido a Turkian App</h1>
+                <h5 class="text-muted">Puedes crear un usuario desde aquí: <a href="{% url 'register' %}">Registrarse</a>
+                </h5>
+                <h5 class="text-muted">O visitar el blog con todos los posteos: <a href="{% url 'blog' %}">Blog</a></h5>
+            </div>
         </div>
-    </div>
-</article>
+    </article>
 {% endblock %}

@@ -1,4 +1,4 @@
-Turkian Web Blog
+Turkian Web App
 
 Desarrollado por Agustín Arnaiz,
 basado en el curso de Corey Schafer "Python Django Tutorial: Full-Featured Web App".
