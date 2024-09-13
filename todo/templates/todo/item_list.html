@@ -3,13 +3,13 @@
 {% block content %}
     <article class="media content-section">
         
-                <div id="search-add-wrapper">
-                    <form method="GET" style="display: flex;">
+                <div class="search-add-wrapper">
+                    <form method="GET">
                         <input type='text' name='search-area' placeholder="Search task..." value="{{search_input}}">
                         <input class="btn btn-info" type="submit" value='Search'>
                     </form>
                     {% if items|length > 0 %}
-                    <a id="add-link" href="{% url 'item-create' %}" title="Create new item">&#x2b;</a>
+                        <a id="add-link" href="{% url 'item-create' %}" title="Create new item">&#x2b;</a>
                     {% endif %}
                 </div>
             

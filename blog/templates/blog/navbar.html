@@ -19,13 +19,11 @@
                     <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                     <a class="nav-item nav-link" href="{% url 'profile' %}" title="Account">
                         <img class="rounded-circle nav-account-img" src="{{ user.profile.image.url }}">
-                    </a>
-                    <!-- <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>  -->
+                    </a>                    
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <button type="submit">Logout</button>
-                    </form>              
-                    
+                    </form>                    
                 {% else %}
                     <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                     <a class="nav-item nav-link" href="{% url 'signup' %}">Signup</a>
