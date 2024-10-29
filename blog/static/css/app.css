@@ -1,5 +1,5 @@
 :root{
-  --background-color: #000e00;
+  --background-color: #0e0e0e;
   --content-color: #4e907f;
   --text-color: #68b9aa;
   --input-color: #507583;
@@ -8,7 +8,7 @@
   --gradientNavUp-color: #00525d;
   --gradientNavDown-color: #0d1516;
   --gradientContentUp-color: #14292e;
-  --gradientContentDown-color: #161616;  
+  --gradientContentDown-color: #0b171a;  
 }
   
 body {  
