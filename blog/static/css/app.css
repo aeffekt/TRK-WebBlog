@@ -1,10 +1,14 @@
 :root{
-  --background-color: #161616;
-  --content-color: #04242e;
-  --text-color: #d0d0d0;
+  --background-color: #000e00;
+  --content-color: #4e907f;
+  --text-color: #68b9aa;
   --input-color: #507583;
   --title-color: #00BCD4;
-  --border-color: #114152;
+  --border-color: #346755;
+  --gradientNavUp-color: #00525d;
+  --gradientNavDown-color: #0d1516;
+  --gradientContentUp-color: #14292e;
+  --gradientContentDown-color: #161616;  
 }
   
 body {  
@@ -13,6 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 main {
@@ -29,23 +34,30 @@ ul {
 }
 
 .navbar {
-  background-color: #003860;
+  background: linear-gradient(var(--gradientNavUp-color),var(--gradientNavDown-color));  
   height: 4em;
 }
 
 .navbar .navbar-nav{
   display: flex;
   align-items: center;  
-  background-color: rgba(0,56,96,0.9);
+  margin-left: 2em;
 }
 
-.navbar button {
+.navbar .navbar-nav a:hover{
+  border-bottom: 2px solid var(--input-color);
+  border-radius: 10px;
+  scale: 1.05;
+  transition: all 0.3s ease-out;
+}
+
+.navbar button {  
   background: none;
 }
 
 .navbar button:hover {
   cursor: pointer;
-  color: white;
+  color: white;  
 }
 
 .nav-account-img {
@@ -73,7 +85,7 @@ ul {
 }
 
 .content-section {
-  background: var(--content-color);
+  background: linear-gradient(var(--gradientContentUp-color),var(--gradientContentDown-color));
   color: var(--text-color);
   padding: 10px 20px;
   border: 1px solid var(--border-color);;
