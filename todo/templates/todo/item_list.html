@@ -12,7 +12,6 @@
                         <a id="add-link" href="{% url 'item-create' %}" title="Create new item">&#x2b;</a>
                     {% endif %}
                 </div>
-            
               
                 <div id="itemlist" class="item-items-wrapper">
                     {% for item in items %}
@@ -27,15 +26,39 @@
                                 {% endif %}
                             </div>
                             <div class="item-controls">
-                                <a class="delete-link" title="Delete task" href="{% url 'item-delete' item.id %}">&#215;</a>
+                                <a class="delete-link" title="Delete task" href="#" data-toggle="modal" data-target="#deleteModal{{item.id}}">&#215;</a>
                             </div>
                         </div>
+
+                        <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{ item.id }}Label"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModal{{ item.id }}Label">Delete task "{{item.title}}"?</h5>
+                                        <button type="button" class="Cerrar" data-dismiss="modal" aria-label="Cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <form action="{% url 'item-delete' item.id %}" method="POST">
+                                            {% csrf_token %}                                            
+                                            <input class="btn btn-danger" type="submit" value="Delete">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     {% empty %}
                         <h3>No items.</h3>
                         <h3>Create <a style="text-decoration: none; color: #e53935;" href="{% url 'item-create' %}">New Item</a> !
                         </h3>                        
                     {% endfor %}
                 </div>
+
+
             
     </article>
 {% endblock %}

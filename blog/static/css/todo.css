@@ -73,3 +73,11 @@ input[type=text], input[type=password], textarea {
     border-radius: 5px;
     padding: 10px;    
 }
+
+.modal-content {
+    background-color: var(--background-color);
+}
+    
+.modal-title{
+    color: var(--text-color);
+}
